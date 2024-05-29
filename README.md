@@ -1,4 +1,4 @@
-# RearFromBookProgram
+# ReadFromBookProgram
 עליכם לכתוב תוכנית שקוראת את הנתונים מקובץ הטקסט הבא (https://drive.google.com/file/d/1tpokRqQT8YXdmSh_1gc4nENpXurmUf3G/view?usp=sharing), ותבצע פעולות שונות על הנתונים בו. 
 קובץ הטקסט מכיל רשימה של ספרים, כאשר כל ספר מיוצג על ידי שורת טקסט בודדת, בפורמט הבא:
 כותרת, שם המחבר, שנת פרסום, מוציא לאור, מזהה ייחודי
