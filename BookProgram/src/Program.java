@@ -1,12 +1,17 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class Program {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         List<Book> bookList = new ArrayList<>();
         try {
             readFromFile(bookList);
+            Collections.sort(bookList);
+            for (Book book: bookList){
+                System.out.println(book);
+            }
             System.out.println("Read " + bookList.size() + " Books in the File");
         } catch (FileNotFoundException e) {
             System.out.println("This file is not found.");
@@ -30,7 +35,63 @@ public class Program {
 
         System.out.println();
         System.out.println("Report: ");
+        File file = new File("Report.txt");
+        PrintWriter pw = new PrintWriter(file);
 
+        pw.println("The total amount book: ");
+        pw.print(bookList.size());
+
+
+        int currentCount = 0;
+        String nameAuthor = "";
+        int maxCount = 0;
+        for (int i = 0; i < bookList.size(); i++) {
+            String currentHigherName = bookList.get(i).getAuthor();
+            for (int j = 0; j < bookList.size(); j++) {
+                if (currentHigherName.equals(bookList.get(j).getAuthor())){
+                    currentCount++;
+                }
+            }
+            if (currentCount > maxCount){
+                maxCount = currentCount;
+                nameAuthor = currentHigherName;
+            }
+            currentCount = 0;
+        }
+        pw.println(" ");
+        pw.println("The name of the author who wrote the most books and the amount of books he wrote: ");
+        pw.print(nameAuthor);
+        pw.print(", ");
+        pw.print(maxCount);
+
+        int higherCount = 0, tempCount = 0;
+        String currentYear = "";
+        String theYear = "";
+        for (int i = 0; i < bookList.size(); i++) {
+            currentYear = bookList.get(i).getPublicationYear();
+            for (int j = 0; j < bookList.size(); j++) {
+                if (currentYear.equals(bookList.get(i).getPublicationYear())){
+                    tempCount++;
+                }
+            }
+            if (tempCount > higherCount){
+                higherCount = tempCount;
+                theYear = currentYear;
+            }
+            tempCount = 0;
+        }
+        pw.println(" ");
+        pw.println("The year when the most books were published on the list: ");
+        pw.print(theYear);
+        pw.close();
+
+        File newFile = new File("Report.txt");
+        Scanner s = new Scanner(newFile);
+        while (s.hasNextLine()){
+            String line = s.nextLine();
+            System.out.println(line);
+        }
+        s.close();
 
     }
 
@@ -42,7 +103,6 @@ public class Program {
             String line = scanner.nextLine();
             String[] parts = line.split(",");
             Book book = new Book(parts[0].trim(), parts[1].trim(), parts[2].trim(), parts[3].trim(), parts[4].trim());
-            System.out.println(book);
             bookList.add(book);
         }
         System.out.println();

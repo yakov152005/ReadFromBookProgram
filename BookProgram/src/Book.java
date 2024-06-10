@@ -1,4 +1,6 @@
-public class Book {
+import java.util.Comparator;
+
+public class Book implements Comparable<Book> {
     private String title;
     private String author;
     private String publicationYear;
@@ -46,6 +48,12 @@ public class Book {
         stringBuilder.append(this.title).append(", ").append(this.author).append(", ").append(this.publicationYear);
         stringBuilder.append(", ").append(this.publisher).append(", ").append(this.uniqueID);
         return stringBuilder.toString();
+    }
+
+
+    @Override
+    public int compareTo(Book other) {
+        return this.title.compareTo(other.title);
     }
 }
 

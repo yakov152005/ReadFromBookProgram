@@ -1,0 +1,6 @@
+The total amount book: 
+103 
+The name of the author who wrote the most books and the amount of books he wrote: 
+James Joyce, 6 
+The year when the most books were published on the list: 
+1949
